@@ -1,0 +1,34 @@
+{
+    "ts-node": {
+        "transpileOnly": true,
+        "files": true,
+        "compilerOptions": {
+            "module": "commonjs",
+            "esModuleInterop": true,
+            "lib": [
+                "ES6",
+                "ES2020"
+            ],
+            "target": "es2020",
+            "strict": true,
+            "outDir": "dist",
+            "skipLibCheck": false,
+            "isolatedModules": true,
+            "resolveJsonModule": true
+        }
+    },
+    "compilerOptions": {
+        "lib": [
+            "ES6",
+            "ES2020"
+        ],
+        "module": "commonjs",
+        "target": "es2020",
+        "strict": true,
+        "esModuleInterop": true,
+        "outDir": "dist",
+        "skipLibCheck": false,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+    }
+}

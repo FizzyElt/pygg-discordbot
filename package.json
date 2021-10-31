@@ -1,0 +1,24 @@
+{
+  "name": "discordbot_ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "create": "ts-node createCommand.ts",
+    "start": "ts-node index.ts",
+    "ts": "ts-node"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/rest": "^0.1.0-canary.0",
+    "@types/ramda": "^0.27.46",
+    "discord-api-types": "^0.24.0",
+    "discord.js": "^13.3.0",
+    "dotenv": "^10.0.0",
+    "ramda": "^0.27.1",
+    "ts-node": "^10.4.0"
+  }
+}
