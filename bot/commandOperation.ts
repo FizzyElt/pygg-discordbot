@@ -3,8 +3,8 @@ import cards from './cards.json';
 import commandMap from '../command';
 import {
   MessagePayload,
-  CommandInteraction,
   InteractionReplyOptions,
+  Interaction,
 } from 'discord.js';
 
 enum CardType {
@@ -38,7 +38,7 @@ const trapCards = R.filter<Card>(
 )(cards as Array<Card>);
 
 const botOperation = R.cond<
-  CommandInteraction,
+  [Interaction],
   InteractionReplyOptions | MessagePayload | string
 >([
   [
@@ -46,6 +46,14 @@ const botOperation = R.cond<
     R.always('窩4 pyㄐㄐ人，小心被我通py'),
   ],
   [R.where({ commandName: R.equals(commandMap.py) }), R.always('通 py !')],
+  [
+    R.where({
+      commandName: R.equals(commandMap.pyParty),
+    }),
+    R.always(
+      'https://cdn.discordapp.com/attachments/903662488258760707/914521041710248006/KGYJi5c.gif'
+    ),
+  ],
   [
     R.where({ commandName: R.equals(commandMap.card) }),
     (interaction) => {
