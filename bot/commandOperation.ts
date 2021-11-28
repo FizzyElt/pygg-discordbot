@@ -62,10 +62,7 @@ const botOperation = R.cond<
         return '沒找到色色圖';
       }
 
-      const message = new MessagePayload(interaction, {
-        files: [card.src],
-      });
-      return message;
+      return card.src;
     },
   ],
   [
@@ -76,10 +73,7 @@ const botOperation = R.cond<
         return '沒找到色色圖';
       }
 
-      const message = new MessagePayload(interaction, {
-        files: [card.src],
-      });
-      return message;
+      return card.src;
     },
   ],
   [
@@ -90,10 +84,7 @@ const botOperation = R.cond<
         return '沒找到色色圖';
       }
 
-      const message = new MessagePayload(interaction, {
-        files: [card.src],
-      });
-      return message;
+      return card.src;
     },
   ],
   [
@@ -104,10 +95,7 @@ const botOperation = R.cond<
         return '沒找到色色圖';
       }
 
-      const message = new MessagePayload(interaction, {
-        files: [card.src],
-      });
-      return message;
+      return card.src;
     },
   ],
   [R.T, R.always('沒有這個指令')],
