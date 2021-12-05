@@ -55,6 +55,12 @@ const botOperation = R.cond<
     ),
   ],
   [
+    R.where({
+      commandName: R.equals(commandMap.dedicationPy),
+    }),
+    R.always('獻出你的 py <(Y)>'),
+  ],
+  [
     R.where({ commandName: R.equals(commandMap.card) }),
     (interaction) => {
       const card = getRandomCard(cards as Array<Card>);

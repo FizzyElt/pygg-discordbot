@@ -22,6 +22,7 @@ const commands = [
     name: commandMap.pyParty,
     description: 'py party',
   },
+  { name: commandMap.dedicationPy, description: 'dedication py' },
   {
     name: commandMap.card,
     description: '隨機抽取色色卡牌',
