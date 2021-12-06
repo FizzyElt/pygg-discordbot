@@ -22,6 +22,10 @@ const commands = [
     name: commandMap.pyParty,
     description: 'py party',
   },
+  {
+    name: commandMap.noImage,
+    description: '沒圖說個雞巴',
+  },
   { name: commandMap.dedicationPy, description: 'dedication py' },
   {
     name: commandMap.card,

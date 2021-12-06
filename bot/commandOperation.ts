@@ -61,6 +61,14 @@ const botOperation = R.cond<
     R.always('獻出你的 py <(Y)>'),
   ],
   [
+    R.where({
+      commandName: R.equals(commandMap.noImage),
+    }),
+    R.always(
+      'https://cdn.discordapp.com/attachments/903662488258760707/917419682900889620/027023d73c4a7e0edee6047909e3f57b.gif'
+    ),
+  ],
+  [
     R.where({ commandName: R.equals(commandMap.card) }),
     (interaction) => {
       const card = getRandomCard(cards as Array<Card>);
