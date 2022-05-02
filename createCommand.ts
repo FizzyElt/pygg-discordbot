@@ -43,6 +43,10 @@ const commands = [
     name: commandMap.trapCard,
     description: '隨機抽取色色陷阱卡牌',
   },
+  {
+    name:commandMap.helicopter,
+    description:'直升....機'
+  }
 ];
 
 const rest = new REST({ version: '9' }).setToken(TOKEN);

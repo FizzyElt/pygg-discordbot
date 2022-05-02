@@ -112,6 +112,12 @@ const botOperation = R.cond<
       return card.src;
     },
   ],
+  [
+    R.where({ commandName: R.equals(commandMap.helicopter) }),
+    (interaction) => {
+      return 'https://c.tenor.com/5gP35G0ffgkAAAAC/helicopter-upside-down.gif';
+    },
+  ],
   [R.T, R.always('沒有這個指令')],
 ]);
 
