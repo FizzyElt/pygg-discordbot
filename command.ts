@@ -9,6 +9,7 @@ enum commandMap {
   magicCard = 'magic_card',
   trapCard = 'trap_card',
   helicopter = 'helicopter',
+  cat = 'cat',
 }
 
 export default commandMap;

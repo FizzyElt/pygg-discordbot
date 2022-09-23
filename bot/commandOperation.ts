@@ -1,11 +1,8 @@
+import axios from 'axios';
 import R from 'ramda';
 import cards from './cards.json';
 import commandMap from '../command';
-import {
-  MessagePayload,
-  InteractionReplyOptions,
-  Interaction,
-} from 'discord.js';
+import { MessagePayload, InteractionReplyOptions, Interaction } from 'discord.js';
 
 enum CardType {
   MONSTER = 'monster',
@@ -39,12 +36,12 @@ const trapCards = R.filter<Card>(
 
 const botOperation = R.cond<
   [Interaction],
-  InteractionReplyOptions | MessagePayload | string
+  | Promise<InteractionReplyOptions | MessagePayload | string>
+  | InteractionReplyOptions
+  | MessagePayload
+  | string
 >([
-  [
-    R.where({ commandName: R.equals(commandMap.intro) }),
-    R.always('窩4 pyㄐㄐ人，小心被我通py'),
-  ],
+  [R.where({ commandName: R.equals(commandMap.intro) }), R.always('窩4 pyㄐㄐ人，小心被我通py')],
   [R.where({ commandName: R.equals(commandMap.py) }), R.always('通 py !')],
   [
     R.where({
@@ -118,6 +115,14 @@ const botOperation = R.cond<
       return 'https://c.tenor.com/5gP35G0ffgkAAAAC/helicopter-upside-down.gif';
     },
   ],
+  [
+    R.where({ commandName: R.equals(commandMap.cat) }),
+    async (interaction) => {
+      const res = await getCatImage();
+      const imageLink = res[0].url || '';
+      return imageLink;
+    },
+  ],
   [R.T, R.always('沒有這個指令')],
 ]);
 
@@ -127,6 +132,16 @@ function getRandomCard(cards: Array<Card>): Card | undefined {
   const selectedCard = R.nth(Math.round(cardsLen * rNum))(cards);
 
   return selectedCard;
+}
+
+async function getCatImage() {
+  const result = await axios.get('https://api.thecatapi.com/v1/images/search', {
+    headers: {
+      'x-api-key': process.env.CAT_API_KEY || '',
+    },
+  });
+
+  return result.data;
 }
 
 export default botOperation;

@@ -13,7 +13,7 @@ client.on('ready', () => {
 client.on('interactionCreate', async (interaction) => {
   if (!interaction.isCommand()) return;
 
-  await interaction.reply(botOperation(interaction));
+  await interaction.reply(await botOperation(interaction));
 });
 
 client.login(process.env.TOKEN || '');

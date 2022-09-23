@@ -44,9 +44,13 @@ const commands = [
     description: '隨機抽取色色陷阱卡牌',
   },
   {
-    name:commandMap.helicopter,
-    description:'直升....機'
-  }
+    name: commandMap.helicopter,
+    description: '直升....機',
+  },
+  {
+    name: commandMap.cat,
+    description: '貓貓',
+  },
 ];
 
 const rest = new REST({ version: '9' }).setToken(TOKEN);
