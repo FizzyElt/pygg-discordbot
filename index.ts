@@ -17,11 +17,7 @@ client.on('interactionCreate', async (interaction) => {
 
   const msg = await botOperation(interaction);
 
-  console.log(msg);
-  interaction
-    .editReply(msg)
-    .then(() => console.log('reply success'))
-    .catch(console.log);
+  interaction.editReply(msg).catch(console.log);
 });
 
 client.login(process.env.TOKEN || '');
