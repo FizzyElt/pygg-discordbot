@@ -51,6 +51,18 @@ const commands = [
     name: commandMap.cat,
     description: '貓貓',
   },
+  {
+    name: commandMap.ask,
+    description: '求神問卜',
+    options: [
+      {
+        name: 'question',
+        description: '你的問題',
+        type: 3,
+        require: true,
+      },
+    ],
+  },
 ];
 
 const rest = new REST({ version: '9' }).setToken(TOKEN);

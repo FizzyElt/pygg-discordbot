@@ -2,7 +2,14 @@ import axios from 'axios';
 import R from 'ramda';
 import cards from './cards.json';
 import commandMap from '../command';
-import { MessagePayload, InteractionReplyOptions, Interaction } from 'discord.js';
+import {
+  MessagePayload,
+  InteractionReplyOptions,
+  Interaction,
+  CommandInteraction,
+  ApplicationCommandOptionType,
+} from 'discord.js';
+import { askOpenAI } from '../openai-api';
 
 enum CardType {
   MONSTER = 'monster',
@@ -35,7 +42,7 @@ const trapCards = R.filter<Card>(
 )(cards as Array<Card>);
 
 const botOperation = R.cond<
-  [Interaction],
+  [CommandInteraction],
   | Promise<InteractionReplyOptions | MessagePayload | string>
   | InteractionReplyOptions
   | MessagePayload
@@ -121,6 +128,28 @@ const botOperation = R.cond<
       const res = await getCatImage();
       const imageLink = res[0].url || '';
       return imageLink;
+    },
+  ],
+  [
+    R.where({ commandName: R.equals(commandMap.ask) }),
+    async (interaction) => {
+      const question = interaction.options.data.find(({ name }) => name === 'question');
+      if (
+        question?.type === ApplicationCommandOptionType.String &&
+        question.value !== undefined &&
+        question.value !== ''
+      ) {
+        const value = question.value as string;
+        try {
+          const res = await askOpenAI(value);
+          const text = res.data.choices.at(0)?.text || '';
+          return value + text;
+        } catch (err) {
+          return '請重問一遍';
+        }
+      }
+
+      return '你的問題呢？';
     },
   ],
   [R.T, R.always('沒有這個指令')],
