@@ -13,7 +13,11 @@ client.on('ready', () => {
 client.on('interactionCreate', async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
-  interaction.deferReply();
+  try {
+    await interaction.deferReply();
+  } catch (err) {
+    console.log(err);
+  }
 
   const msg = await botOperation(interaction);
 

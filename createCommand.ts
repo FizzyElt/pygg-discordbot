@@ -28,22 +28,6 @@ const commands = [
   },
   { name: commandMap.dedicationPy, description: 'dedication py' },
   {
-    name: commandMap.card,
-    description: '隨機抽取色色卡牌',
-  },
-  {
-    name: commandMap.monsterCard,
-    description: '隨機抽取色色怪獸卡牌',
-  },
-  {
-    name: commandMap.magicCard,
-    description: '隨機抽取色色魔法卡牌',
-  },
-  {
-    name: commandMap.trapCard,
-    description: '隨機抽取色色陷阱卡牌',
-  },
-  {
     name: commandMap.helicopter,
     description: '直升....機',
   },
