@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
-import botOperation from './bot/commandOperation';
 import { Client, IntentsBitField } from 'discord.js';
+import interactionCreate from './listeners/interaction_create';
 
 dotenv.config();
 
@@ -10,18 +10,6 @@ client.on('ready', () => {
   console.log(`Logged in as ${client?.user?.tag}`);
 });
 
-client.on('interactionCreate', async (interaction) => {
-  if (!interaction.isChatInputCommand()) return;
-
-  try {
-    await interaction.deferReply();
-  } catch (err) {
-    console.log(err);
-  }
-
-  const msg = await botOperation(interaction);
-
-  interaction.editReply(msg).catch(console.log);
-});
+client.on('interactionCreate', interactionCreate(client));
 
 client.login(process.env.TOKEN || '');

@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "engines": {
-    "node": "16.x"
+    "node": "18.x"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "create": "ts-node createCommand.ts",
+    "create": "ts-node ./slash_command",
     "start": "ts-node index.ts",
     "ts": "ts-node"
   },
@@ -15,17 +15,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@discordjs/rest": "^1.4.0",
-    "@types/ramda": "^0.27.46",
+    "@discordjs/builders": "^1.4.0",
+    "@discordjs/rest": "^1.5.0",
     "axios": "^0.27.2",
-    "discord-api-types": "^0.37.20",
+    "discord-api-types": "^0.37.35",
     "discord.js": "^14.7.1",
     "dotenv": "^10.0.0",
+    "fp-ts": "^2.13.1",
     "openai": "^3.1.0",
-    "ramda": "^0.27.1",
-    "ts-node": "^10.4.0"
+    "ramda": "^0.27.2",
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
-    "typescript": "^4.9.3"
+    "@types/node": "^18.14.1",
+    "@types/ramda": "^0.27.66",
+    "typescript": "^4.9.5"
   }
 }
