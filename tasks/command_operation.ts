@@ -29,8 +29,12 @@ const getOperationByCommand = (client: Client<true>) => {
       ),
     ],
     [
-      eqCommandName(CommandName.helicopter),
-      constant(Task.of('https://c.tenor.com/5gP35G0ffgkAAAAC/helicopter-upside-down.gif')),
+      eqCommandName(CommandName.myParty),
+      constant(
+        Task.of(
+          'https://memeprod.ap-south-1.linodeobjects.com/user-gif/f617320247c594d021a00064f359fae5.gif'
+        )
+      ),
     ],
     [
       eqCommandName(CommandName.helicopter),
