@@ -4,5 +4,6 @@ services:
   app:
     build: .
     image: pygg-bot
+    container_name: pygg-bot
     env_file:
       - .env
