@@ -1,0 +1,8 @@
+version: '1'
+
+services:
+  app:
+    build: .
+    image: pygg-bot
+    env_file:
+      - .env
