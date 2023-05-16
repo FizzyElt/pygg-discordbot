@@ -40,6 +40,14 @@ const getOperationByCommand = (client: Client<true>) => {
       eqCommandName(CommandName.helicopter),
       constant(Task.of('https://c.tenor.com/5gP35G0ffgkAAAAC/helicopter-upside-down.gif')),
     ],
+    [
+      eqCommandName(CommandName.work_overtime),
+      constant(
+        Task.of(
+          'https://cdn.discordapp.com/attachments/815589256071872573/1108041370364563546/unknown-2.png'
+        )
+      ),
+    ],
     [eqCommandName(CommandName.cat), getCatImage],
     [R.T, constant(Task.of('沒有這個指令'))],
   ]);
