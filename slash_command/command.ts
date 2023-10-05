@@ -7,11 +7,11 @@ export enum CommandName {
   noImage = 'no_image',
   helicopter = 'helicopter',
   cat = 'cat',
-  ask = 'ask',
   work_overtime = 'work_overtime',
+  emo_jiji = 'emo_jiji',
 }
 
-import { SlashCommandBuilder } from '@discordjs/builders';
+import { SlashCommandBuilder, SlashCommandStringOption } from '@discordjs/builders';
 
 export const commands = [
   new SlashCommandBuilder().setName(CommandName.intro).setDescription('就是自我介紹'),
@@ -23,4 +23,16 @@ export const commands = [
   new SlashCommandBuilder().setName(CommandName.helicopter).setDescription('直升....機'),
   new SlashCommandBuilder().setName(CommandName.cat).setDescription('貓貓'),
   new SlashCommandBuilder().setName(CommandName.work_overtime).setDescription('無情的加班ㄐ器...'),
+  new SlashCommandBuilder()
+    .setName(CommandName.emo_jiji)
+    .setDescription('emoji_kitchen')
+    .addStringOption(
+      new SlashCommandStringOption().setName('left').setDescription('left emoji').setRequired(true)
+    )
+    .addStringOption(
+      new SlashCommandStringOption()
+        .setName('right')
+        .setDescription('right emoji')
+        .setRequired(true)
+    ),
 ];

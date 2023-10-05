@@ -1,10 +1,7 @@
-import { REST } from '@discordjs/rest';
-import { SlashCommandBuilder } from '@discordjs/builders';
-import { Routes } from 'discord-api-types/v10';
 import dotenv from 'dotenv';
-import * as TE from 'fp-ts/TaskEither';
-import { pipe } from 'fp-ts/function';
+import { pipe, TaskEither } from '../common';
 import { commands } from './command';
+import { Routes, REST, SlashCommandBuilder } from 'discord.js';
 
 dotenv.config();
 
@@ -19,7 +16,7 @@ function pushCommands(params: {
   guildId: string;
   commands: Array<Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>>;
 }) {
-  return TE.tryCatch(
+  return TaskEither.tryCatch(
     () =>
       rest.put(Routes.applicationGuildCommands(params.clientId, params.guildId), {
         body: commands.map((command) => command.toJSON()),
@@ -30,7 +27,7 @@ function pushCommands(params: {
 
 pipe(
   pushCommands({ clientId, guildId, commands }),
-  TE.match(
+  TaskEither.match(
     (err) => console.error('command push fail', err),
     (res) => console.log('command push success', res)
   )

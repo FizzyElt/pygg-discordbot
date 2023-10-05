@@ -1,14 +1,16 @@
 import { Client, CommandInteraction } from 'discord.js';
 import * as R from 'ramda';
-import * as Task from 'fp-ts/Task';
+import { Task, TaskOption, Option } from '../common';
 import { constant, pipe } from 'fp-ts/function';
 import { CommandName } from '../slash_command/command';
+import { getCommandOptionString } from '../utils';
 import getCatImage from '../api/get_cat_image';
+import { fetchEmoji } from './emoji_kitchen';
 
 const getOperationByCommand = (client: Client<true>) => {
   const eqCommandName = R.propEq('commandName');
 
-  return R.cond([
+  return R.cond<[CommandInteraction], Task.Task<string>>([
     [eqCommandName(CommandName.intro), constant(Task.of('窩4 pyㄐㄐ人，小心被我通py'))],
     [eqCommandName(CommandName.py), constant(Task.of('通 py !'))],
     [
@@ -49,6 +51,18 @@ const getOperationByCommand = (client: Client<true>) => {
       ),
     ],
     [eqCommandName(CommandName.cat), getCatImage],
+    [
+      eqCommandName(CommandName.emo_jiji),
+      (interaction) =>
+        pipe(
+          Option.Do,
+          Option.let('left', () => getCommandOptionString('left')(interaction).trim()),
+          Option.let('right', () => getCommandOptionString('right')(interaction).trim()),
+          Task.of,
+          TaskOption.chain(({ left, right }) => fetchEmoji(left, right)),
+          TaskOption.getOrElse(() => Task.of('emoji kitchen 找不到組合'))
+        ),
+    ],
     [R.T, constant(Task.of('沒有這個指令'))],
   ]);
 };
