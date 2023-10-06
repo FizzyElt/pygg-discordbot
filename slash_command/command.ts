@@ -1,3 +1,5 @@
+import { SlashCommandBuilder, SlashCommandStringOption } from 'discord.js';
+
 export enum CommandName {
   intro = 'intro',
   py = 'py',
@@ -10,8 +12,6 @@ export enum CommandName {
   work_overtime = 'work_overtime',
   emo_jiji = 'emo_jiji',
 }
-
-import { SlashCommandBuilder, SlashCommandStringOption } from '@discordjs/builders';
 
 export const commands = [
   new SlashCommandBuilder().setName(CommandName.intro).setDescription('就是自我介紹'),

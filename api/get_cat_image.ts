@@ -1,5 +1,4 @@
-import * as TaskOption from 'fp-ts/TaskOption';
-import { constant, pipe } from 'fp-ts/function';
+import { TaskOption, pipe, constant } from '../common';
 import * as R from 'ramda';
 import axios from 'axios';
 
@@ -15,7 +14,7 @@ const getCatImage = () => {
         }
       )
     ),
-    TaskOption.chain((res) => TaskOption.fromNullable(res.data.at(0)?.url)),
+    TaskOption.flatMap((res) => TaskOption.fromNullable(res.data.at(0)?.url)),
     TaskOption.match(constant('貓貓躲起來了，請重新引誘'), R.identity)
   );
 };

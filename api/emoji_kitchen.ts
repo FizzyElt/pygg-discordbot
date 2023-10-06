@@ -19,6 +19,6 @@ export const fetchEmoji = (left: string, right: string): TaskOption.TaskOption<s
     TaskOption.tryCatch(() =>
       fetch(createEmojiRequest(left, right)).then((response) => response.json())
     ),
-    TaskOption.map((data) => data.results.at(0)?.url || '找不到組合')
+    TaskOption.map((data) => `${left} x ${right}\n${data?.results?.at(0)?.url || '找不到組合'}`)
   );
 };

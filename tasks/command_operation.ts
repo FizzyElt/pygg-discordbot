@@ -1,11 +1,10 @@
 import { Client, CommandInteraction } from 'discord.js';
 import * as R from 'ramda';
-import { Task, TaskOption, Option } from '../common';
-import { constant, pipe } from 'fp-ts/function';
+import { constant, pipe, Task, TaskOption, Option } from '../common';
 import { CommandName } from '../slash_command/command';
 import { getCommandOptionString } from '../utils';
 import getCatImage from '../api/get_cat_image';
-import { fetchEmoji } from './emoji_kitchen';
+import { fetchEmoji } from '../api/emoji_kitchen';
 
 const getOperationByCommand = (client: Client<true>) => {
   const eqCommandName = R.propEq('commandName');
@@ -59,7 +58,7 @@ const getOperationByCommand = (client: Client<true>) => {
           Option.let('left', () => getCommandOptionString('left')(interaction).trim()),
           Option.let('right', () => getCommandOptionString('right')(interaction).trim()),
           Task.of,
-          TaskOption.chain(({ left, right }) => fetchEmoji(left, right)),
+          TaskOption.flatMap(({ left, right }) => fetchEmoji(left, right)),
           TaskOption.getOrElse(() => Task.of('emoji kitchen 找不到組合'))
         ),
     ],
